@@ -29,14 +29,6 @@ const projects = [
     liveUrl: '#',
     imageGradient: 'from-orange-500 to-pink-600',
   },
-  {
-    title: 'Portfolio Website',
-    description: 'Modern portfolio website with smooth animations, responsive design, and optimized performance.',
-    technologies: ['React', 'Framer Motion', 'Tailwind', 'Vite'],
-    githubUrl: '#',
-    liveUrl: '#',
-    imageGradient: 'from-indigo-500 to-blue-600',
-  },
 ];
 
 export function ProjectsSection() {
