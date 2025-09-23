@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface TrailPoint {
   x: number;
@@ -12,6 +12,7 @@ export function useCursor() {
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const trailPoints = useRef<TrailPoint[]>([]);
   const animationId = useRef<number>();
+  const [isHoveringButton, setIsHoveringButton] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,6 +37,11 @@ export function useCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
+
+      // Check if hovering over a button
+      const target = e.target as HTMLElement;
+      const isButton = target?.tagName === 'BUTTON' || target?.closest('button');
+      setIsHoveringButton(!!isButton);
 
       // Update main cursor
       if (cursorRef.current) {
@@ -105,9 +111,13 @@ export function useCursor() {
           currentPoint.x, currentPoint.y
         );
 
-        // Blue Archive neon colors
-        const glowColor = `hsla(206, 100%, 60%, ${opacity})`;
-        const coreColor = `hsla(206, 100%, 80%, ${opacity * 0.8})`;
+        // Dynamic neon colors based on hover state
+        const glowColor = isHoveringButton 
+          ? `hsla(60, 100%, 60%, ${opacity})` // Neon yellow
+          : `hsla(206, 100%, 60%, ${opacity})`; // Blue Archive blue
+        const coreColor = isHoveringButton
+          ? `hsla(60, 100%, 80%, ${opacity * 0.8})` // Neon yellow core
+          : `hsla(206, 100%, 80%, ${opacity * 0.8})`; // Blue Archive blue core
         
         gradient.addColorStop(0, glowColor);
         gradient.addColorStop(1, coreColor);
@@ -116,7 +126,9 @@ export function useCursor() {
         ctx.save();
         
         // Outer glow
-        ctx.shadowColor = `hsla(206, 100%, 60%, ${opacity * 0.6})`;
+        ctx.shadowColor = isHoveringButton 
+          ? `hsla(60, 100%, 60%, ${opacity * 0.6})` // Yellow glow
+          : `hsla(206, 100%, 60%, ${opacity * 0.6})`; // Blue glow
         ctx.shadowBlur = 15;
         ctx.strokeStyle = glowColor;
         ctx.lineWidth = 4;
@@ -140,7 +152,9 @@ export function useCursor() {
 
         // Core line
         ctx.shadowBlur = 0;
-        ctx.strokeStyle = `hsla(206, 100%, 90%, ${opacity})`;
+        ctx.strokeStyle = isHoveringButton 
+          ? `hsla(60, 100%, 90%, ${opacity})` // Yellow core
+          : `hsla(206, 100%, 90%, ${opacity})`; // Blue core
         ctx.lineWidth = 1;
         
         ctx.beginPath();
@@ -181,9 +195,12 @@ export function useCursor() {
       />
       <div 
         ref={cursorRef} 
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] shadow-ba-glow"
+        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] shadow-ba-glow transition-all duration-200"
         style={{
-          boxShadow: '0 0 15px hsla(206, 100%, 60%, 0.8), 0 0 25px hsla(206, 100%, 60%, 0.4)',
+          boxShadow: isHoveringButton 
+            ? '0 0 15px hsla(60, 100%, 60%, 0.8), 0 0 25px hsla(60, 100%, 60%, 0.4)' // Neon yellow glow
+            : '0 0 15px hsla(206, 100%, 60%, 0.8), 0 0 25px hsla(206, 100%, 60%, 0.4)', // Blue glow
+          backgroundColor: isHoveringButton ? 'hsl(60, 100%, 70%)' : undefined,
         }}
       />
     </>
