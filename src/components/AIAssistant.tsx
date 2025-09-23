@@ -45,7 +45,7 @@ Remember: You represent Ryan King professionally, so ensure all responses reflec
   const initializeEngine = async () => {
     setIsInitializing(true);
     try {
-      const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
+      const selectedModel = "Phi-3-mini-4k-instruct-q4f16_1-MLC";
       
       const initProgressCallback = (report: webllm.InitProgressReport) => {
         const progress = Math.round(report.progress * 100);
