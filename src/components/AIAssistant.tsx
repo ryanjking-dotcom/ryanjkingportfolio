@@ -19,6 +19,7 @@ export function AIAssistant() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const [engine, setEngine] = useState<webllm.MLCEngineInterface | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +48,9 @@ Remember: You represent Ryan King professionally, so ensure all responses reflec
       const selectedModel = "Llama-3.2-3B-Instruct-q4f32_1-MLC";
       
       const initProgressCallback = (report: webllm.InitProgressReport) => {
-        console.log(`Loading model: ${(report.progress * 100).toFixed(1)}%`);
+        const progress = Math.round(report.progress * 100);
+        setLoadingProgress(progress);
+        console.log(`Loading model: ${progress}%`);
       };
 
       const newEngine = await webllm.CreateMLCEngine(
@@ -65,12 +68,13 @@ Remember: You represent Ryan King professionally, so ensure all responses reflec
         timestamp: new Date(),
       };
       setMessages([welcomeMessage]);
+      setLoadingProgress(100);
       
     } catch (error) {
       console.error('Failed to initialize WebLLM:', error);
       const errorMessage: Message = {
         id: Date.now().toString(),
-        content: "Sorry, I'm having trouble starting up. Please try refreshing the page or contact Ryan directly through the contact form.",
+        content: "Sorry, I'm having trouble starting up. This model requires a modern browser with WebGPU support. Please try refreshing the page or contact Ryan directly through the contact form.",
         role: 'assistant',
         timestamp: new Date(),
       };
@@ -179,7 +183,10 @@ Remember: You represent Ryan King professionally, so ensure all responses reflec
               <div>
                 <h3 className="font-semibold text-sm">Ryan's AI Assistant</h3>
                 <p className="text-xs text-muted-foreground">
-                  {isInitializing ? 'Initializing...' : 'Ask about skills & experience'}
+                  {isInitializing 
+                    ? `Loading model... ${loadingProgress}%` 
+                    : 'Ask about skills & experience'
+                  }
                 </p>
               </div>
             </div>
@@ -197,9 +204,23 @@ Remember: You represent Ryan King professionally, so ensure all responses reflec
           <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
             {isInitializing && (
               <div className="flex items-center justify-center py-8">
-                <div className="text-center">
+                <div className="text-center space-y-4">
                   <Loader2 className="h-8 w-8 animate-spin mx-auto mb-2 text-primary" />
-                  <p className="text-sm text-muted-foreground">Loading AI assistant...</p>
+                  <div className="space-y-2">
+                    <p className="text-sm font-medium">Loading AI Assistant</p>
+                    <div className="w-48 bg-muted rounded-full h-2 mx-auto">
+                      <div 
+                        className="bg-primary h-2 rounded-full transition-all duration-300" 
+                        style={{ width: `${loadingProgress}%` }}
+                      />
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {loadingProgress}% - Downloading and initializing model...
+                    </p>
+                    <p className="text-xs text-muted-foreground/75">
+                      This may take 5-10 minutes on first load
+                    </p>
+                  </div>
                 </div>
               </div>
             )}
