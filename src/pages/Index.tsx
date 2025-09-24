@@ -6,6 +6,7 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { AIAssistant } from '@/components/AIAssistant';
+import { MusicPlayer } from '@/components/MusicPlayer';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       </main>
       <Footer />
       <AIAssistant />
+      <MusicPlayer />
     </div>
   );
 };
