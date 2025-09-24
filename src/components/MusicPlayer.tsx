@@ -3,7 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-export const MusicPlayer = () => {
+interface MusicPlayerProps {
+  isVisible: boolean;
+}
+
+export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(30);
@@ -46,7 +50,7 @@ export const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg">
+    <div className={`fixed bottom-4 right-4 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}>
       <audio ref={audioRef} src="/assets/FutureBossaLofi.mp3" />
       
       <div className="flex items-center gap-3">

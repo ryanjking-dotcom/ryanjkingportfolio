@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
+import { Music } from 'lucide-react';
 
 const navItems = [
   { href: '#hero', label: 'Home' },
@@ -9,7 +10,7 @@ const navItems = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export function Navigation() {
+export function Navigation({ onMusicToggle, isMusicVisible }: { onMusicToggle: () => void; isMusicVisible: boolean }) {
   const [activeSection, setActiveSection] = useState('hero');
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -74,7 +75,17 @@ export function Navigation() {
             ))}
           </div>
 
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onMusicToggle}
+              className={`h-9 w-9 p-0 transition-colors ${isMusicVisible ? 'bg-accent' : ''}`}
+            >
+              <Music className="h-4 w-4" />
+            </Button>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </nav>
