@@ -57,11 +57,14 @@ export function useCursor() {
       });
 
       // Limit trail length and remove old points
-      const maxAge = 1500; // Trail duration in ms (increased from 800)
+      const maxAge = 600; // Trail duration in ms (shorter)
       const now = Date.now();
-      trailPoints.current = trailPoints.current.filter(
-        point => now - point.timestamp < maxAge
-      );
+      trailPoints.current = trailPoints.current.filter(point => now - point.timestamp < maxAge);
+      // Cap maximum points to prevent performance issues
+      const MAX_POINTS = 140;
+      if (trailPoints.current.length > MAX_POINTS) {
+        trailPoints.current = trailPoints.current.slice(-MAX_POINTS);
+      }
     };
 
     const handleMouseLeave = () => {
@@ -92,7 +95,12 @@ export function useCursor() {
       }
 
       const now = Date.now();
-      const maxAge = 1500;
+      const maxAge = 600;
+      // Clean old points and cap list each frame to prevent lag and ensure persistence
+      trailPoints.current = trailPoints.current.filter(p => now - p.timestamp < maxAge);
+      if (trailPoints.current.length > 140) {
+        trailPoints.current = trailPoints.current.slice(-140);
+      }
 
       // Draw the neon trail
       for (let i = 1; i < points.length; i++) {
