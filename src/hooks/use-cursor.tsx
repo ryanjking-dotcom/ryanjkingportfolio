@@ -195,7 +195,7 @@ export function useCursor() {
       />
       <div 
         ref={cursorRef} 
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] shadow-ba-glow transition-all duration-200"
+        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] shadow-ba-glow"
         style={{
           boxShadow: isHoveringButton 
             ? '0 0 15px hsla(60, 100%, 60%, 0.8), 0 0 25px hsla(60, 100%, 60%, 0.4)' // Neon yellow glow
