@@ -57,7 +57,7 @@ export function useCursor() {
       });
 
       // Limit trail length and remove old points
-      const maxAge = 800; // Trail duration in ms
+      const maxAge = 1500; // Trail duration in ms (increased from 800)
       const now = Date.now();
       trailPoints.current = trailPoints.current.filter(
         point => now - point.timestamp < maxAge
@@ -92,7 +92,7 @@ export function useCursor() {
       }
 
       const now = Date.now();
-      const maxAge = 800;
+      const maxAge = 1500;
 
       // Draw the neon trail
       for (let i = 1; i < points.length; i++) {
