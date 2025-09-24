@@ -12,6 +12,8 @@ export function useCursor() {
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const trailPoints = useRef<TrailPoint[]>([]);
   const animationId = useRef<number>();
+  const noDrawFrames = useRef(0);
+  const lastPos = useRef<{ x: number; y: number } | null>(null);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
 
   useEffect(() => {
@@ -37,6 +39,7 @@ export function useCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
+      lastPos.current = { x, y };
 
       // Check if hovering over a button
       const target = e.target as HTMLElement;
@@ -90,6 +93,20 @@ export function useCursor() {
 
       const points = trailPoints.current;
       if (points.length < 2) {
+        const lp = lastPos.current;
+        if (lp && ctx) {
+          const glow = isHoveringButton ? 'hsla(60, 100%, 60%, 1)' : 'hsla(206, 100%, 60%, 1)';
+          const core = isHoveringButton ? 'hsla(60, 100%, 90%, 1)' : 'hsla(206, 100%, 90%, 1)';
+          ctx.save();
+          ctx.shadowColor = glow;
+          ctx.shadowBlur = 15;
+          ctx.fillStyle = core;
+          ctx.beginPath();
+          ctx.arc(lp.x, lp.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+        noDrawFrames.current = 0;
         animationId.current = requestAnimationFrame(drawTrail);
         return;
       }
