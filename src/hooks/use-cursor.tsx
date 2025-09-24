@@ -191,7 +191,7 @@ export function useCursor() {
       <canvas
         ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-[9997]"
-        style={{ mixBlendMode: 'screen' }}
+        style={{ mixBlendMode: 'normal' }}
       />
       <div 
         ref={cursorRef} 
