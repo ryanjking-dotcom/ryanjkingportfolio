@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Music } from 'lucide-react';
+import { MusicPlayer } from './MusicPlayer';
 
 const navItems = [
   { href: '#hero', label: 'Home' },
@@ -76,14 +77,17 @@ export function Navigation({ onMusicToggle, isMusicVisible }: { onMusicToggle: (
           </div>
 
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onMusicToggle}
-              className={`h-9 w-9 p-0 transition-colors ${isMusicVisible ? 'bg-accent' : ''}`}
-            >
-              <Music className="h-4 w-4" />
-            </Button>
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onMusicToggle}
+                className={`h-9 w-9 p-0 transition-colors ${isMusicVisible ? 'bg-accent' : ''}`}
+              >
+                <Music className="h-4 w-4" />
+              </Button>
+              <MusicPlayer isVisible={isMusicVisible} />
+            </div>
             <ThemeToggle />
           </div>
         </div>

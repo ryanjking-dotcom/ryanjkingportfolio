@@ -7,7 +7,7 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { AIAssistant } from '@/components/AIAssistant';
-import { MusicPlayer } from '@/components/MusicPlayer';
+
 
 const Index = () => {
   const [isMusicVisible, setIsMusicVisible] = useState(false);
@@ -23,7 +23,6 @@ const Index = () => {
       </main>
       <Footer />
       <AIAssistant />
-      <MusicPlayer isVisible={isMusicVisible} />
     </div>
   );
 };

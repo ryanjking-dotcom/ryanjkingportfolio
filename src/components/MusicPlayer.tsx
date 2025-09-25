@@ -50,7 +50,7 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
   };
 
   return (
-    <div className={`fixed bottom-4 right-4 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}>
+    <div className={`absolute top-12 right-0 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}>
       <audio ref={audioRef} src="/assets/FutureBossaLofi.mp3" />
       
       <div className="flex items-center gap-3">
