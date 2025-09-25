@@ -2,41 +2,65 @@ import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import { globalAudioManager } from '@/utils/globalAudio';
 
 interface MusicPlayerProps {
   isVisible: boolean;
 }
 
 export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(30);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
+    // Use global audio instance
+    audioRef.current = globalAudioManager.getInstance();
+    
+    console.log('MusicPlayer mounted, isVisible:', isVisible);
+
+    // Set up event listeners
+    const audio = audioRef.current;
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+
+    // Initial state sync
+    setIsPlaying(!audio.paused);
+    setVolume(audio.volume * 100);
+    setIsMuted(audio.muted);
+
+    return () => {
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      console.log('MusicPlayer unmounted');
+    };
+  }, []);
+
+  useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
       audio.volume = volume / 100;
-      audio.loop = true;
     }
   }, [volume]);
 
-  // Separate effect for autoplay to avoid multiple triggers
+  // Only attempt autoplay once when first visible
   useEffect(() => {
     const audio = audioRef.current;
-    if (audio && !audio.src.includes('blob:')) {
-      // Only attempt autoplay once when component mounts
+    if (audio && isVisible && !globalAudioManager.isInitialized()) {
       const attemptAutoplay = async () => {
         try {
           await audio.play();
-          setIsPlaying(true);
         } catch (error) {
           console.log('Autoplay was prevented by browser:', error);
         }
       };
       attemptAutoplay();
     }
-  }, []); // Empty dependency array to run only once
+  }, [isVisible]);
 
   const togglePlay = () => {
     const audio = audioRef.current;
@@ -68,7 +92,7 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
 
   return (
     <div className={`absolute top-12 right-0 z-50 bg-card/80 backdrop-blur-sm border border-border rounded-lg p-3 shadow-lg transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'}`}>
-      <audio ref={audioRef} src="/assets/FutureBossaLofi.mp3" />
+      {/* No audio element here - using global instance */}
       
       <div className="flex items-center gap-3">
         <Button
