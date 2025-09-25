@@ -80,6 +80,7 @@ export default {
         'ba-glow': 'var(--shadow-glow)',
       },
       fontFamily: {
+        'sans': ['Noto Sans', 'sans-serif'],
         'mono': ['JetBrains Mono', 'monospace'],
       },
       borderRadius: {
