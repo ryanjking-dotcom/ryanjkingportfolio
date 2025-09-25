@@ -18,6 +18,13 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
     if (audio) {
       audio.volume = volume / 100;
       audio.loop = true;
+      
+      // Attempt to auto-play when component mounts
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch((error) => {
+        console.log('Autoplay was prevented by browser:', error);
+      });
     }
   }, [volume]);
 
