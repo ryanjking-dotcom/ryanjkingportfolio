@@ -18,15 +18,25 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
     if (audio) {
       audio.volume = volume / 100;
       audio.loop = true;
-      
-      // Attempt to auto-play when component mounts
-      audio.play().then(() => {
-        setIsPlaying(true);
-      }).catch((error) => {
-        console.log('Autoplay was prevented by browser:', error);
-      });
     }
   }, [volume]);
+
+  // Separate effect for autoplay to avoid multiple triggers
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio && !audio.src.includes('blob:')) {
+      // Only attempt autoplay once when component mounts
+      const attemptAutoplay = async () => {
+        try {
+          await audio.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Autoplay was prevented by browser:', error);
+        }
+      };
+      attemptAutoplay();
+    }
+  }, []); // Empty dependency array to run only once
 
   const togglePlay = () => {
     const audio = audioRef.current;
