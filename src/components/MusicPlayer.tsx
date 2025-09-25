@@ -47,21 +47,6 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
     }
   }, [volume]);
 
-  // Only attempt autoplay once when first visible
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (audio && isVisible && !globalAudioManager.isInitialized()) {
-      const attemptAutoplay = async () => {
-        try {
-          await audio.play();
-        } catch (error) {
-          console.log('Autoplay was prevented by browser:', error);
-        }
-      };
-      attemptAutoplay();
-    }
-  }, [isVisible]);
-
   const togglePlay = () => {
     const audio = audioRef.current;
     if (audio) {
