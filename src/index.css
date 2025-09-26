@@ -80,40 +80,42 @@
   }
 
   .dark {
-    --background: 220 30% 8%;
-    --foreground: 210 40% 98%;
+    --background: 220 50% 4%;
+    --foreground: 206 60% 95%;
 
-    --card: 220 30% 10%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 45% 8%;
+    --card-foreground: 206 60% 95%;
 
-    --popover: 220 30% 10%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 45% 8%;
+    --popover-foreground: 206 60% 95%;
 
-    --primary: 206 100% 60%;
-    --primary-foreground: 220 30% 8%;
+    --primary: 206 100% 65%;
+    --primary-foreground: 220 50% 4%;
     --primary-glow: 206 100% 75%;
 
-    --secondary: 220 30% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 220 40% 12%;
+    --secondary-foreground: 206 60% 95%;
 
-    --muted: 220 30% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 40% 10%;
+    --muted-foreground: 206 40% 75%;
 
-    --accent: 220 30% 15%;
-    --accent-foreground: 206 100% 60%;
+    --accent: 220 40% 12%;
+    --accent-foreground: 206 100% 65%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 206 60% 95%;
 
-    --border: 220 30% 15%;
-    --input: 220 30% 15%;
-    --ring: 206 100% 60%;
+    --border: 220 40% 15%;
+    --input: 220 40% 15%;
+    --ring: 206 100% 65%;
 
-    /* Dark theme specific */
-    --ba-tech-blue: 206 100% 60%;
-    --ba-light-blue: 220 30% 15%;
-    --ba-dark-blue: 210 40% 98%;
-    --ba-navy: 220 30% 8%;
+    /* Dark theme specific - Enhanced Blue Archive colors */
+    --ba-tech-blue: 206 100% 65%;
+    --ba-light-blue: 220 40% 12%;
+    --ba-accent-yellow: 45 100% 70%;
+    --ba-accent-pink: 330 100% 80%;
+    --ba-dark-blue: 206 60% 95%;
+    --ba-navy: 220 50% 4%;
 
     --gradient-hero: linear-gradient(135deg, hsl(var(--ba-tech-blue)), hsl(var(--primary-glow)));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--ba-light-blue)));
