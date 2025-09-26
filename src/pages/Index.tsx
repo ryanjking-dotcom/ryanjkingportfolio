@@ -24,7 +24,12 @@ const Index = () => {
   }, [playClickSound]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div 
+      className="min-h-screen bg-background bg-cover bg-center bg-fixed bg-no-repeat"
+      style={{
+        backgroundImage: `url('/src/assets/background.png')`
+      }}
+    >
       <CustomCursor />
       <Navigation onMusicToggle={() => setIsMusicVisible(!isMusicVisible)} isMusicVisible={isMusicVisible} />
       <main>
