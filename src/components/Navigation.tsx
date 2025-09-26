@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Music } from 'lucide-react';
 import { MusicPlayer } from './MusicPlayer';
@@ -88,7 +87,6 @@ export function Navigation({ onMusicToggle, isMusicVisible }: { onMusicToggle: (
               </Button>
               <MusicPlayer isVisible={isMusicVisible} />
             </div>
-            <ThemeToggle />
           </div>
         </div>
       </div>
