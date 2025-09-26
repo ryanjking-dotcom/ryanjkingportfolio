@@ -80,42 +80,42 @@
   }
 
   .dark {
-    --background: 220 50% 4%;
-    --foreground: 206 60% 95%;
+    --background: 220 60% 3%;
+    --foreground: 206 40% 92%;
 
-    --card: 220 45% 8%;
-    --card-foreground: 206 60% 95%;
+    --card: 220 50% 6%;
+    --card-foreground: 206 40% 92%;
 
-    --popover: 220 45% 8%;
-    --popover-foreground: 206 60% 95%;
+    --popover: 220 50% 6%;
+    --popover-foreground: 206 40% 92%;
 
-    --primary: 206 100% 65%;
-    --primary-foreground: 220 50% 4%;
-    --primary-glow: 206 100% 75%;
+    --primary: 206 100% 70%;
+    --primary-foreground: 220 60% 3%;
+    --primary-glow: 206 100% 80%;
 
-    --secondary: 220 40% 12%;
-    --secondary-foreground: 206 60% 95%;
+    --secondary: 220 40% 8%;
+    --secondary-foreground: 206 40% 92%;
 
-    --muted: 220 40% 10%;
-    --muted-foreground: 206 40% 75%;
+    --muted: 220 35% 10%;
+    --muted-foreground: 206 30% 75%;
 
-    --accent: 220 40% 12%;
-    --accent-foreground: 206 100% 65%;
+    --accent: 220 40% 8%;
+    --accent-foreground: 206 100% 70%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 206 60% 95%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 220 60% 3%;
 
-    --border: 220 40% 15%;
-    --input: 220 40% 15%;
-    --ring: 206 100% 65%;
+    --border: 220 35% 18%;
+    --input: 220 35% 18%;
+    --ring: 206 100% 70%;
 
-    /* Dark theme specific - Enhanced Blue Archive colors */
-    --ba-tech-blue: 206 100% 65%;
-    --ba-light-blue: 220 40% 12%;
-    --ba-accent-yellow: 45 100% 70%;
-    --ba-accent-pink: 330 100% 80%;
-    --ba-dark-blue: 206 60% 95%;
-    --ba-navy: 220 50% 4%;
+    /* Dark theme specific - High contrast Blue Archive colors */
+    --ba-tech-blue: 206 100% 70%;
+    --ba-light-blue: 220 40% 8%;
+    --ba-accent-yellow: 45 100% 75%;
+    --ba-accent-pink: 330 100% 85%;
+    --ba-dark-blue: 206 40% 92%;
+    --ba-navy: 220 60% 3%;
 
     --gradient-hero: linear-gradient(135deg, hsl(var(--ba-tech-blue)), hsl(var(--primary-glow)));
     --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--ba-light-blue)));
