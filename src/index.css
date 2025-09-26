@@ -6,46 +6,46 @@
 
 @layer base {
   :root {
-    /* Blue Archive color palette - Enhanced readability */
-    --background: 210 30% 98%;
-    --foreground: 220 50% 8%;
+    /* Blue Archive color palette - Bright and vibrant */
+    --background: 210 100% 98%;
+    --foreground: 220 80% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 50% 8%;
+    --card: 210 100% 99%;
+    --card-foreground: 220 80% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 50% 8%;
+    --popover: 210 100% 99%;
+    --popover-foreground: 220 80% 12%;
 
-    /* Blue Archive primary - Kivotos blue */
-    --primary: 206 100% 45%;
+    /* Blue Archive primary - Bright Kivotos blue */
+    --primary: 206 100% 55%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 206 100% 60%;
+    --primary-glow: 206 100% 70%;
 
-    --secondary: 206 80% 92%;
-    --secondary-foreground: 220 50% 8%;
+    --secondary: 206 100% 88%;
+    --secondary-foreground: 220 80% 12%;
 
-    --muted: 206 60% 94%;
-    --muted-foreground: 220 40% 25%;
+    --muted: 206 80% 92%;
+    --muted-foreground: 220 60% 20%;
 
-    --accent: 206 100% 88%;
-    --accent-foreground: 220 50% 8%;
+    --accent: 206 100% 85%;
+    --accent-foreground: 220 80% 12%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 206 40% 85%;
-    --input: 206 40% 85%;
-    --ring: 206 100% 45%;
+    --border: 206 60% 80%;
+    --input: 206 60% 80%;
+    --ring: 206 100% 55%;
 
     --radius: 0.75rem;
 
-    /* Blue Archive specific colors - Enhanced contrast */
-    --ba-tech-blue: 206 100% 45%;
-    --ba-light-blue: 206 100% 88%;
-    --ba-accent-yellow: 45 100% 65%;
-    --ba-accent-pink: 330 100% 80%;
-    --ba-dark-blue: 220 50% 8%;
-    --ba-navy: 220 60% 6%;
+    /* Blue Archive specific colors - Bright and vibrant */
+    --ba-tech-blue: 206 100% 55%;
+    --ba-light-blue: 206 100% 85%;
+    --ba-accent-yellow: 45 100% 60%;
+    --ba-accent-pink: 330 100% 75%;
+    --ba-dark-blue: 220 80% 12%;
+    --ba-navy: 220 90% 8%;
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--ba-tech-blue)), hsl(var(--primary-glow)));
