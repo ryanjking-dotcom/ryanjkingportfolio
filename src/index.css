@@ -6,46 +6,46 @@
 
 @layer base {
   :root {
-    /* Blue Archive color palette */
-    --background: 240 20% 98%;
-    --foreground: 220 30% 15%;
+    /* Blue Archive color palette - Enhanced readability */
+    --background: 210 30% 98%;
+    --foreground: 220 50% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 15%;
+    --card-foreground: 220 50% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 15%;
+    --popover-foreground: 220 50% 8%;
 
     /* Blue Archive primary - Kivotos blue */
-    --primary: 206 100% 50%;
+    --primary: 206 100% 45%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 206 100% 65%;
+    --primary-glow: 206 100% 60%;
 
-    --secondary: 210 40% 98%;
-    --secondary-foreground: 220 30% 15%;
+    --secondary: 206 80% 92%;
+    --secondary-foreground: 220 50% 8%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 206 60% 94%;
+    --muted-foreground: 220 40% 25%;
 
-    --accent: 206 100% 96%;
-    --accent-foreground: 206 100% 20%;
+    --accent: 206 100% 88%;
+    --accent-foreground: 220 50% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 206 100% 50%;
+    --border: 206 40% 85%;
+    --input: 206 40% 85%;
+    --ring: 206 100% 45%;
 
     --radius: 0.75rem;
 
-    /* Blue Archive specific colors */
-    --ba-tech-blue: 206 100% 50%;
-    --ba-light-blue: 206 100% 96%;
-    --ba-accent-yellow: 45 100% 70%;
-    --ba-accent-pink: 330 100% 85%;
-    --ba-dark-blue: 220 30% 15%;
-    --ba-navy: 220 50% 10%;
+    /* Blue Archive specific colors - Enhanced contrast */
+    --ba-tech-blue: 206 100% 45%;
+    --ba-light-blue: 206 100% 88%;
+    --ba-accent-yellow: 45 100% 65%;
+    --ba-accent-pink: 330 100% 80%;
+    --ba-dark-blue: 220 50% 8%;
+    --ba-navy: 220 60% 6%;
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--ba-tech-blue)), hsl(var(--primary-glow)));
