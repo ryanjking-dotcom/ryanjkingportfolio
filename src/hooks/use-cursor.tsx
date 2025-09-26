@@ -1,72 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 
-interface TrailPoint {
-  x: number;
-  y: number;
-  timestamp: number;
-}
-
 export function useCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const trailPoints = useRef<TrailPoint[]>([]);
-  const animationId = useRef<number>();
-  const noDrawFrames = useRef(0);
-  const lastPos = useRef<{ x: number; y: number } | null>(null);
   const [isHoveringButton, setIsHoveringButton] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    // Set up canvas
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    ctxRef.current = ctx;
-
-    // Handle window resize
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-
     const handleMouseMove = (e: MouseEvent) => {
       const x = e.clientX;
       const y = e.clientY;
-      lastPos.current = { x, y };
 
       // Check if hovering over a button
       const target = e.target as HTMLElement;
       const isButton = target?.tagName === 'BUTTON' || target?.closest('button');
       setIsHoveringButton(!!isButton);
 
-      // Update main cursor
+      // Update cursor position
       if (cursorRef.current) {
         cursorRef.current.style.left = `${x}px`;
         cursorRef.current.style.top = `${y}px`;
-      }
-
-      // Add new point to trail
-      trailPoints.current.push({
-        x,
-        y,
-        timestamp: Date.now()
-      });
-
-      // Limit trail length and remove old points
-      const maxAge = 600; // Trail duration in ms (shorter)
-      const now = Date.now();
-      trailPoints.current = trailPoints.current.filter(point => now - point.timestamp < maxAge);
-      // Cap maximum points to prevent performance issues
-      const MAX_POINTS = 140;
-      if (trailPoints.current.length > MAX_POINTS) {
-        trailPoints.current = trailPoints.current.slice(-MAX_POINTS);
       }
     };
 
@@ -82,120 +33,6 @@ export function useCursor() {
       }
     };
 
-    // Animation loop for drawing the trail
-    const drawTrail = () => {
-      const ctx = ctxRef.current;
-      const canvas = canvasRef.current;
-      if (!ctx || !canvas) return;
-
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const points = trailPoints.current;
-      if (points.length < 2) {
-        const lp = lastPos.current;
-        if (lp && ctx) {
-          const glow = isHoveringButton ? 'hsla(60, 100%, 60%, 1)' : 'hsla(206, 100%, 60%, 1)';
-          const core = isHoveringButton ? 'hsla(60, 100%, 90%, 1)' : 'hsla(206, 100%, 90%, 1)';
-          ctx.save();
-          ctx.shadowColor = glow;
-          ctx.shadowBlur = 15;
-          ctx.fillStyle = core;
-          ctx.beginPath();
-          ctx.arc(lp.x, lp.y, 2, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
-        noDrawFrames.current = 0;
-        animationId.current = requestAnimationFrame(drawTrail);
-        return;
-      }
-
-      const now = Date.now();
-      const maxAge = 600;
-      // Clean old points and cap list each frame to prevent lag and ensure persistence
-      trailPoints.current = trailPoints.current.filter(p => now - p.timestamp < maxAge);
-      if (trailPoints.current.length > 140) {
-        trailPoints.current = trailPoints.current.slice(-140);
-      }
-
-      // Draw the neon trail
-      for (let i = 1; i < points.length; i++) {
-        const currentPoint = points[i];
-        const prevPoint = points[i - 1];
-        
-        const age = now - currentPoint.timestamp;
-        const normalizedAge = age / maxAge;
-        const opacity = Math.max(0, 1 - normalizedAge);
-        
-        if (opacity <= 0) continue;
-
-        // Create gradient for neon effect
-        const gradient = ctx.createLinearGradient(
-          prevPoint.x, prevPoint.y,
-          currentPoint.x, currentPoint.y
-        );
-
-        // Dynamic neon colors based on hover state
-        const glowColor = isHoveringButton 
-          ? `hsla(60, 100%, 60%, ${opacity})` // Neon yellow
-          : `hsla(206, 100%, 60%, ${opacity})`; // Blue Archive blue
-        const coreColor = isHoveringButton
-          ? `hsla(60, 100%, 80%, ${opacity * 0.8})` // Neon yellow core
-          : `hsla(206, 100%, 80%, ${opacity * 0.8})`; // Blue Archive blue core
-        
-        gradient.addColorStop(0, glowColor);
-        gradient.addColorStop(1, coreColor);
-
-        // Draw multiple layers for glow effect
-        ctx.save();
-        
-        // Outer glow
-        ctx.shadowColor = isHoveringButton 
-          ? `hsla(60, 100%, 60%, ${opacity * 0.6})` // Yellow glow
-          : `hsla(206, 100%, 60%, ${opacity * 0.6})`; // Blue glow
-        ctx.shadowBlur = 15;
-        ctx.strokeStyle = glowColor;
-        ctx.lineWidth = 4;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        
-        ctx.beginPath();
-        ctx.moveTo(prevPoint.x, prevPoint.y);
-        ctx.lineTo(currentPoint.x, currentPoint.y);
-        ctx.stroke();
-
-        // Inner glow
-        ctx.shadowBlur = 8;
-        ctx.strokeStyle = coreColor;
-        ctx.lineWidth = 2;
-        
-        ctx.beginPath();
-        ctx.moveTo(prevPoint.x, prevPoint.y);
-        ctx.lineTo(currentPoint.x, currentPoint.y);
-        ctx.stroke();
-
-        // Core line
-        ctx.shadowBlur = 0;
-        ctx.strokeStyle = isHoveringButton 
-          ? `hsla(60, 100%, 90%, ${opacity})` // Yellow core
-          : `hsla(206, 100%, 90%, ${opacity})`; // Blue core
-        ctx.lineWidth = 1;
-        
-        ctx.beginPath();
-        ctx.moveTo(prevPoint.x, prevPoint.y);
-        ctx.lineTo(currentPoint.x, currentPoint.y);
-        ctx.stroke();
-
-        ctx.restore();
-      }
-
-      animationId.current = requestAnimationFrame(drawTrail);
-    };
-
-    // Start animation loop
-    drawTrail();
-
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
@@ -204,31 +41,20 @@ export function useCursor() {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
-      window.removeEventListener('resize', handleResize);
-      if (animationId.current) {
-        cancelAnimationFrame(animationId.current);
-      }
     };
   }, []);
 
   const CursorComponent = () => (
-    <>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-[9997]"
-        style={{ mixBlendMode: 'normal' }}
-      />
-      <div 
-        ref={cursorRef} 
-        className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999] shadow-ba-glow"
-        style={{
-          boxShadow: isHoveringButton 
-            ? '0 0 15px hsla(60, 100%, 60%, 0.8), 0 0 25px hsla(60, 100%, 60%, 0.4)' // Neon yellow glow
-            : '0 0 15px hsla(206, 100%, 60%, 0.8), 0 0 25px hsla(206, 100%, 60%, 0.4)', // Blue glow
-          backgroundColor: isHoveringButton ? 'hsl(60, 100%, 70%)' : undefined,
-        }}
-      />
-    </>
+    <div 
+      ref={cursorRef} 
+      className="fixed top-0 left-0 w-3 h-3 rounded-full bg-primary pointer-events-none transform -translate-x-1/2 -translate-y-1/2 z-[9999]"
+      style={{
+        boxShadow: isHoveringButton 
+          ? '0 0 15px hsla(60, 100%, 60%, 0.8), 0 0 25px hsla(60, 100%, 60%, 0.4)' // Neon yellow glow
+          : '0 0 15px hsla(206, 100%, 60%, 0.8), 0 0 25px hsla(206, 100%, 60%, 0.4)', // Blue glow
+        backgroundColor: isHoveringButton ? 'hsl(60, 100%, 70%)' : undefined,
+      }}
+    />
   );
 
   return { CursorComponent };
