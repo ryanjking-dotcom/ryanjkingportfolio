@@ -8,6 +8,7 @@ import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { AIAssistant } from '@/components/AIAssistant';
 import { useClickSound } from '@/hooks/use-click-sound';
+import backgroundImage from '@/assets/background.png';
 
 
 const Index = () => {
@@ -27,7 +28,7 @@ const Index = () => {
     <div 
       className="min-h-screen bg-background bg-cover bg-center bg-fixed bg-no-repeat"
       style={{
-        backgroundImage: `url('/src/assets/background.png')`
+        backgroundImage: `url(${backgroundImage})`
       }}
     >
       <CustomCursor />
