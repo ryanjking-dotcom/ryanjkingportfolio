@@ -18,12 +18,6 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Container for positioning overlay */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full max-w-4xl h-full flex items-center px-4">
-          <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl"></div>
-        </div>
-      </div>
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-hero opacity-5"></div>
       
@@ -32,11 +26,11 @@ export function HeroSection() {
       <div className="absolute top-40 right-20 w-16 h-16 rounded-full bg-primary/20 animate-float" style={{ animationDelay: '1s' }}></div>
       <div className="absolute bottom-20 left-20 w-12 h-12 rounded-full bg-primary/15 animate-float" style={{ animationDelay: '2s' }}></div>
 
-      <div className={`text-center space-y-8 px-4 transition-all duration-1000 ${
+      <div className={`text-center space-y-8 px-6 md:px-12 py-12 md:py-16 transition-all duration-1000 relative ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         {/* Semi-transparent background overlay */}
-        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10 max-w-4xl mx-auto"></div>
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10"></div>
         {/* Profile Image */}
         <div className="relative mx-auto w-32 h-32 mb-8">
           <div className="w-full h-full rounded-full bg-gradient-hero p-1 animate-glow-pulse">

@@ -70,7 +70,7 @@ export function ContactSection() {
       ref={sectionRef}
       className="py-20 px-4 max-w-4xl mx-auto relative"
     >
-      <div className={`transition-all duration-1000 ${
+      <div className={`transition-all duration-1000 px-6 md:px-12 py-12 md:py-16 relative ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
         {/* Semi-transparent background overlay */}
