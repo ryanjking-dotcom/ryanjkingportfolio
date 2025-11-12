@@ -34,21 +34,23 @@ export function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 px-4 max-w-6xl mx-auto"
+      className="py-20 px-4 max-w-6xl mx-auto relative"
     >
       <div className={`transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="text-center mb-16">
+        {/* Semi-transparent background overlay */}
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10"></div>
+        <div className="text-center mb-16 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             About <span className="bg-gradient-hero bg-clip-text text-transparent">Me</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-hero mx-auto mb-8 rounded-full"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center relative">
           {/* Text content */}
-          <div className="space-y-6">
+          <div className="space-y-6 relative">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Hi! I'm Ryan, a recent Computer Science graduate with a passion for building 
               responsive and interactive web applications. I love the intersection of design 
@@ -72,7 +74,7 @@ export function AboutSection() {
           </div>
 
           {/* Skills grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 relative">
             {skills.map((skill, index) => (
               <Card
                 key={skill.title}

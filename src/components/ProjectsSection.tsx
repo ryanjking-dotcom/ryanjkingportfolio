@@ -56,12 +56,14 @@ export function ProjectsSection() {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-20 px-4 max-w-6xl mx-auto"
+      className="py-20 px-4 max-w-6xl mx-auto relative"
     >
       <div className={`transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="text-center mb-16">
+        {/* Semi-transparent background overlay */}
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10"></div>
+        <div className="text-center mb-16 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Featured <span className="bg-gradient-hero bg-clip-text text-transparent">Projects</span>
           </h2>
@@ -71,7 +73,7 @@ export function ProjectsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 relative">
           {projects.map((project, index) => (
             <Card
               key={project.title}

@@ -68,12 +68,14 @@ export function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 px-4 max-w-4xl mx-auto"
+      className="py-20 px-4 max-w-4xl mx-auto relative"
     >
       <div className={`transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
-        <div className="text-center mb-16">
+        {/* Semi-transparent background overlay */}
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10"></div>
+        <div className="text-center mb-16 relative">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Get In <span className="bg-gradient-hero bg-clip-text text-transparent">Touch</span>
           </h2>
@@ -83,7 +85,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 relative">
           {/* Contact Info */}
           <div className="space-y-6">
             <Card className="border-primary/20 bg-gradient-card">

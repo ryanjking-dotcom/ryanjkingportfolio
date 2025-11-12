@@ -18,6 +18,12 @@ export function HeroSection() {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Container for positioning overlay */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-full max-w-4xl h-full flex items-center px-4">
+          <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl"></div>
+        </div>
+      </div>
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-hero opacity-5"></div>
       
@@ -29,6 +35,8 @@ export function HeroSection() {
       <div className={`text-center space-y-8 px-4 transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}>
+        {/* Semi-transparent background overlay */}
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/50 backdrop-blur-sm rounded-3xl -z-10 max-w-4xl mx-auto"></div>
         {/* Profile Image */}
         <div className="relative mx-auto w-32 h-32 mb-8">
           <div className="w-full h-full rounded-full bg-gradient-hero p-1 animate-glow-pulse">
