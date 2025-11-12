@@ -8,27 +8,27 @@
   :root {
     /* Blue Archive color palette - Bright and vibrant */
     --background: 210 100% 98%;
-    --foreground: 220 80% 12%;
+    --foreground: 220 90% 8%;
 
     --card: 210 100% 99%;
-    --card-foreground: 220 80% 12%;
+    --card-foreground: 220 90% 8%;
 
     --popover: 210 100% 99%;
-    --popover-foreground: 220 80% 12%;
+    --popover-foreground: 220 90% 8%;
 
     /* Blue Archive primary - Bright Kivotos blue */
-    --primary: 206 100% 55%;
+    --primary: 206 100% 45%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 206 100% 70%;
 
     --secondary: 206 100% 88%;
-    --secondary-foreground: 220 80% 12%;
+    --secondary-foreground: 220 90% 8%;
 
     --muted: 206 80% 92%;
-    --muted-foreground: 220 70% 15%;
+    --muted-foreground: 220 90% 25%;
 
     --accent: 206 100% 85%;
-    --accent-foreground: 220 80% 12%;
+    --accent-foreground: 220 90% 8%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
