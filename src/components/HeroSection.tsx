@@ -78,14 +78,23 @@ export function HeroSection() {
 
         {/* Social Links */}
         <div className="flex gap-4 justify-center mt-8">
-          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300">
-            <Github className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300" asChild>
+            <a href="https://github.com/ryanjking-dotcom" target="_blank" rel="noopener noreferrer">
+              <Github className="h-5 w-5" />
+              <span className="sr-only">GitHub</span>
+            </a>
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300">
-            <Linkedin className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300" asChild>
+            <a href="https://www.linkedin.com/in/ryankingnyc/" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="h-5 w-5" />
+              <span className="sr-only">LinkedIn</span>
+            </a>
           </Button>
-          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300">
-            <Mail className="h-5 w-5" />
+          <Button variant="ghost" size="icon" className="hover:bg-primary/10 hover:text-primary transition-all duration-300" asChild>
+            <a href="mailto:ryanjking.nyc@gmail.com">
+              <Mail className="h-5 w-5" />
+              <span className="sr-only">Email</span>
+            </a>
           </Button>
         </div>
 

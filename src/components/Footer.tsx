@@ -23,7 +23,7 @@ export function Footer() {
               className="hover:bg-primary/10 hover:text-primary transition-all duration-300"
               asChild
             >
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/ryanjking-dotcom" target="_blank" rel="noopener noreferrer">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </a>
@@ -34,7 +34,7 @@ export function Footer() {
               className="hover:bg-primary/10 hover:text-primary transition-all duration-300"
               asChild
             >
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/ryankingnyc/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </a>
