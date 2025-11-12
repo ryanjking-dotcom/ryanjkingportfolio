@@ -48,7 +48,7 @@ export function HeroSection() {
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Aspiring Software Engineer | Freelancer | Student
+            Software Engineer | Freelancer | Student
           </p>
           <div className="text-sm md:text-base text-muted-foreground font-mono">
             Building the future with{' '}

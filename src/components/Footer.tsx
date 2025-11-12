@@ -10,9 +10,6 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 items-center">
           {/* Brand */}
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-2">
-              Ryan King
-            </h3>
             <p className="text-muted-foreground text-sm">
               Software Engineer & Creative Developer
             </p>
@@ -58,7 +55,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="text-center md:text-right">
             <p className="text-muted-foreground text-sm flex items-center justify-center md:justify-end gap-1">
-              © {currentYear} Made with <Heart className="h-3 w-3 text-red-500" /> by Ryan King
+              © {currentYear} Made with <Heart className="h-3 w-3 text-red-500" />
             </p>
           </div>
         </div>
