@@ -1,13 +1,11 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer className="bg-gradient-to-r from-card to-ba-light border-t border-primary/20 py-12">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Brand */}
           <div className="text-center md:text-left">
             <p className="text-muted-foreground text-sm">
@@ -16,7 +14,7 @@ export function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center md:justify-end gap-4">
             <Button
               variant="ghost"
               size="icon"
@@ -50,13 +48,6 @@ export function Footer() {
                 <span className="sr-only">Email</span>
               </a>
             </Button>
-          </div>
-
-          {/* Copyright */}
-          <div className="text-center md:text-right">
-            <p className="text-muted-foreground text-sm flex items-center justify-center md:justify-end gap-1">
-              © {currentYear} Made with <Heart className="h-3 w-3 text-red-500" />
-            </p>
           </div>
         </div>
       </div>
