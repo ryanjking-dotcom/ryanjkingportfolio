@@ -47,15 +47,19 @@ export const MusicPlayer = ({ isVisible }: MusicPlayerProps) => {
     }
   }, [volume]);
 
-  const togglePlay = () => {
+  const togglePlay = async () => {
     const audio = audioRef.current;
-    if (audio) {
-      if (isPlaying) {
-        audio.pause();
+    if (!audio) return;
+
+    try {
+      if (audio.paused) {
+        await audio.play();
       } else {
-        audio.play();
+        audio.pause();
       }
-      setIsPlaying(!isPlaying);
+      // state will sync via play/pause event listeners
+    } catch (err) {
+      console.error('Music playback blocked or failed:', err);
     }
   };
 
