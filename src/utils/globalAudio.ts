@@ -5,7 +5,8 @@ class GlobalAudioManager {
 
   getInstance(): HTMLAudioElement {
     if (!this.audio) {
-      this.audio = new Audio('/assets/FutureBossaLofi.mp3');
+      // Use import.meta.env.BASE_URL for correct path on GitHub Pages
+      this.audio = new Audio(`${import.meta.env.BASE_URL}assets/FutureBossaLofi.mp3`);
       this.audio.loop = true;
       this.audio.volume = 0.3;
       this.initialized = true;
