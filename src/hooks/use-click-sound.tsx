@@ -5,12 +5,9 @@ export const useClickSound = () => {
 
   const playClickSound = useCallback(() => {
     if (!audioRef.current) {
-      const isGithubPages = import.meta.env.PROD && window.location.hostname.endsWith('github.io');
-      const repo = window.location.pathname.split('/').filter(Boolean)[0];
-      const base = isGithubPages && repo ? `/${repo}/` : '/';
-
-      audioRef.current = new Audio(`${base}assets/bluearchive-click-sound.mp3`);
-      audioRef.current.volume = 0.6; // Increased volume for click sounds
+      // Use relative path to work with Vite's base: './' on GitHub Pages
+      audioRef.current = new Audio('./assets/bluearchive-click-sound.mp3');
+      audioRef.current.volume = 0.6;
     }
     
     audioRef.current.currentTime = 0; // Reset to start for rapid clicks

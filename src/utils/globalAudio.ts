@@ -5,11 +5,8 @@ class GlobalAudioManager {
 
   getInstance(): HTMLAudioElement {
     if (!this.audio) {
-      const isGithubPages = import.meta.env.PROD && window.location.hostname.endsWith('github.io');
-      const repo = window.location.pathname.split('/').filter(Boolean)[0];
-      const base = isGithubPages && repo ? `/${repo}/` : '/';
-
-      this.audio = new Audio(`${base}assets/FutureBossaLofi.mp3`);
+      // Use relative path to work with Vite's base: './' on GitHub Pages
+      this.audio = new Audio('./assets/FutureBossaLofi.mp3');
       this.audio.loop = true;
       this.audio.volume = 0.3;
       this.initialized = true;
