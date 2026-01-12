@@ -5,8 +5,11 @@ class GlobalAudioManager {
 
   getInstance(): HTMLAudioElement {
     if (!this.audio) {
-      // Use import.meta.env.BASE_URL for correct path on GitHub Pages
-      this.audio = new Audio(`${import.meta.env.BASE_URL}assets/FutureBossaLofi.mp3`);
+      const isGithubPages = import.meta.env.PROD && window.location.hostname.endsWith('github.io');
+      const repo = window.location.pathname.split('/').filter(Boolean)[0];
+      const base = isGithubPages && repo ? `/${repo}/` : '/';
+
+      this.audio = new Audio(`${base}assets/FutureBossaLofi.mp3`);
       this.audio.loop = true;
       this.audio.volume = 0.3;
       this.initialized = true;
