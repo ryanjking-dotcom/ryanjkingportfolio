@@ -62,7 +62,7 @@ export function AboutSection() {
               I believe in writing clean, maintainable code that makes a difference.
             </p>
             <div className="flex flex-wrap gap-2">
-              {['React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS'].map((tech) => (
+              {['React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS', 'Linux', 'Windows', 'Mac', 'iOS', 'Android'].map((tech) => (
                 <span
                   key={tech}
                   className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"

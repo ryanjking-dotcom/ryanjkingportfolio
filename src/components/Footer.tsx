@@ -9,7 +9,7 @@ export function Footer() {
           {/* Brand */}
           <div className="text-center md:text-left">
             <p className="text-muted-foreground text-sm">
-              Software Engineer & Creative Developer
+              Tech Enthusiast & Freelancer
             </p>
           </div>
 
