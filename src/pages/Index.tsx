@@ -6,7 +6,7 @@ import { AboutSection } from '@/components/AboutSection';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
-import { AIAssistant } from '@/components/AIAssistant';
+
 import { useClickSound } from '@/hooks/use-click-sound';
 import backgroundImage from '@/assets/background.png';
 
@@ -40,7 +40,6 @@ const Index = () => {
         <ContactSection />
       </main>
       <Footer />
-      <AIAssistant />
     </div>
   );
 };
