@@ -10,7 +10,7 @@ const projects = [
     description: 'An intelligent AI assistant pipeline showcasing automation and conversational AI capabilities.',
     technologies: ['AI', 'Python', 'Automation'],
     githubUrl: 'https://github.com/ryanjking-dotcom/AI-assistant-pipeline',
-    youtubeUrl: 'https://youtu.be/_lKRyxuhIrs',
+    youtubeUrl: 'https://www.youtube.com/watch?v=_lKRyxuhIrs',
     imageGradient: 'from-blue-500 to-cyan-500',
   },
 ];

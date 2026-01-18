@@ -16,7 +16,12 @@ const Index = () => {
   const playClickSound = useClickSound();
 
   useEffect(() => {
-    const handleClick = () => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+
+      // Don't play the click sound on external navigation clicks (helps avoid browser popup/security quirks)
+      if (target?.closest('a[target="_blank"], a[href^="http"]')) return;
+
       playClickSound();
     };
 
