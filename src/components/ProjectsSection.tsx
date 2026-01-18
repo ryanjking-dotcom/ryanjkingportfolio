@@ -1,33 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { Youtube, Github } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with modern UI, secure payments, and real-time inventory management.',
-    technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    githubUrl: '#',
-    liveUrl: '#',
-    imageGradient: 'from-blue-500 to-purple-600',
-  },
-  {
-    title: 'Task Management App',
-    description: 'Collaborative task management with real-time updates, team collaboration, and productivity analytics.',
-    technologies: ['TypeScript', 'React', 'Firebase', 'Material-UI'],
-    githubUrl: '#',
-    liveUrl: '#',
-    imageGradient: 'from-green-500 to-teal-600',
-  },
-  {
-    title: 'Weather Dashboard',
-    description: 'Beautiful weather application with location-based forecasts, interactive maps, and weather alerts.',
-    technologies: ['React', 'Weather API', 'Chart.js', 'Tailwind'],
-    githubUrl: '#',
-    liveUrl: '#',
-    imageGradient: 'from-orange-500 to-pink-600',
+    title: 'AI Assistant Pipeline',
+    description: 'An intelligent AI assistant pipeline showcasing automation and conversational AI capabilities.',
+    technologies: ['AI', 'Python', 'Automation'],
+    githubUrl: 'https://github.com/ryanjking-dotcom/AI-assistant-pipeline',
+    youtubeUrl: 'https://youtu.be/_lKRyxuhIrs',
+    imageGradient: 'from-blue-500 to-cyan-500',
   },
 ];
 
@@ -124,7 +108,7 @@ export function ProjectsSection() {
                   >
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4 mr-2" />
-                      Code
+                      GitHub
                     </a>
                   </Button>
                   <Button
@@ -132,9 +116,9 @@ export function ProjectsSection() {
                     className="bg-gradient-hero hover:shadow-ba-glow transition-all duration-300"
                     asChild
                   >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                    <a href={project.youtubeUrl} target="_blank" rel="noopener noreferrer">
+                      <Youtube className="h-4 w-4 mr-2" />
+                      Watch Demo
                     </a>
                   </Button>
                 </div>
